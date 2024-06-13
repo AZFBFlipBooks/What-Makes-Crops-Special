@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            height: 55px;
+            overflow: hidden;
+            background-color: Orange;
+        }
+
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        @media screen and (max-width: 768vw) {
+
+            .main-content,
+            .sidebar {
+                width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+        }
+
+
+        /* Book */
+
+        .book {
+            position: relative;
+            width: 50vw;
+            height: 90vw;
+            transition: transform 0.5s;
+            flex-wrap: wrap;
+            display: flex;
+            z-index: 5;
+            margin: auto;
+            /* Center the book horizontally */
+            margin-top: 5vh;
+            position: relative;
+            /* Relative positioning for button placement */
+        }
+
+        .paper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            perspective: 1500px;
+        }
+
+        .front,
+        .back {
+            background-color: white;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform-origin: left;
+            transition: transform 0.5s;
+        }
+
+        .front {
+            z-index: 1;
+            backface-visibility: hidden;
+            -left: 3px solid powderblue;
+        }
+
+        .back {
+            z-index: 0;
+        }
+
+        .front-content,
+        .back-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back-content {
+            transform: rotateY(180deg)
+        }
+
+        /* Paper flip effect */
+
+        .flipped .front,
+        .flipped .back {
+            transform: rotateY(-180deg);
+        }
+
+
+
+        /* Paper stack order */
+
+        #p1 {
+            z-index: 14;
+        }
+
+        #p2 {
+            z-index: 13;
+        }
+
+        #p3 {
+            z-index: 12;
+        }
+
+        #p4 {
+            z-index: 11;
+        }
+
+        #p5 {
+            z-index: 10;
+        }
+
+        #p6 {
+            z-index: 9;
+        }
+
+        #p7 {
+            z-index: 8;
+        }
+
+        #p8 {
+            z-index: 7;
+        }
+
+        #p9 {
+            z-index: 6;
+        }
+
+        #p10 {
+            z-index: 5;
+        }
+
+        #p11 {
+            z-index: 4;
+        }
+
+        #p12 {
+            z-index: 3;
+        }
+
+        #p13 {
+            z-index: 2;
+        }
+
+        #p14 {
+            z-index: 1;
+        }
+
+
+
+        .pseudo-iframe {
+
+
+            border: 1px solid #ccc;
+            /* iFrame-like border */
+            overflow: auto;
+            /* Scrollbar if content overflows */
+            position: relative;
+            /* Positioning context for the content */
+            background: grey;
+            /* Background color to mimic an iframe's default styling */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            /* Optional: adds shadow for depth */
+        }
+
+        .iframe-content {
+            padding: 20px;
+            /* Padding around the content */
+            height: 190%;
+            /* Full height of the container */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topnav">
+        <button id="prev-btn" class="control-button" style="margin:20px;">Previous Page </button>
+        <button id="next-btn" class="control-button">Next Page</button>
+
+        <label for="zoom-slider">Zoom:</label>
+        <input type="range" id="zoom-slider" min="50" max="600" value="100">
+    </div>
+    </div>
+
+
+    <div class="pseudo-iframe">
+        <div class="iframe-content">
+            <!-- Embed your content here -->
+
+            <div id="pannable-container">
+
+                <div id="pannable-content">
+
+                    <div class="container">
+
+                        <!-- Book -->
+
+                        <div id="book" class="book">
+                                                                          <!-- Paper 1 -->
+
+                            <div id="p1" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f1" class="front-content">
+
+                                        <img src="https://i.ibb.co/QQzZD4B/What-makes-Crops-Special-ENGLISH-Page-01.png"
+                                            style="height:95%; width: 100%;" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b1" class="back-content">
+
+                                        <img src="https://i.ibb.co/ZcwNkqS/Farmers-Grow-Special-Crops-ENGLISH-Page-02.png" alt="pg-2"
+                                            style="height:95%; width: 100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Paper 2 -->
+
+                            <div id="p2" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f2" class="front-content">
+
+                                        <img src="https://i.ibb.co/pKFdxP4/What-makes-Crops-Special-ENGLISH-Page-03.png" alt="pg-3"
+                                            style="height:95%; width: 100%;" loading="lazy" decoding="async">
+
+                                    </div>
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b2" class="back-content">
+                                        <img src="https://i.ibb.co/Xym8z7q/What-makes-Crops-Special-ENGLISH-Page-04.png" alt="pg-4"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Paper 3 -->
+
+                            <div id="p3" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f3" class="front-content">
+
+                                        <img src="https://i.ibb.co/ckSNy8T/What-makes-Crops-Special-ENGLISH-Page-05.png" alt="pg-5"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b3" class="back-content">
+
+                                        <img src="https://i.ibb.co/ynntgVg/What-makes-Crops-Special-ENGLISH-Page-06.png" alt="pg-6"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Paper 4 -->
+
+                            <div id="p4" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f4" class="front-content">
+
+                                        <img src="https://i.ibb.co/nmL3vVC/What-makes-Crops-Special-ENGLISH-Page-07.png" alt="pg-7"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b4" class="back-content">
+
+                                        <img src="https://i.ibb.co/z8Q8DHt/What-makes-Crops-Special-ENGLISH-Page-08.png" alt="pg-8"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Paper 5 -->
+
+                            <div id="p5" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f5" class="front-content">
+
+                                        <img src="https://i.ibb.co/YfVKFCX/What-makes-Crops-Special-ENGLISH-Page-09.png" alt="pg-9"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b5" class="back-content">
+
+                                        <img src="https://i.ibb.co/7nbQ0cB/What-makes-Crops-Special-ENGLISH-Page-10.png" alt="pg-10"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Paper 6 -->
+                            <div id="p6" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f6" class="front-content">
+
+                                        <img src="https://i.ibb.co/w757MrQ/What-makes-Crops-Special-ENGLISH-Page-11.png" alt="pg-11"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b6" class="back-content">
+
+                                        <img src="https://i.ibb.co/m5VPLKt/What-makes-Crops-Special-ENGLISH-Page-12.png" alt="pg-12"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Paper 7 -->
+                            <div id="p7" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f7" class="front-content">
+
+                                        <img src="https://i.ibb.co/NZ6hMrD/What-makes-Crops-Special-ENGLISH-Page-13.png" alt="pg-13"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b7" class="back-content">
+
+                                        <img src="https://i.ibb.co/wJFF2Rx/What-makes-Crops-Special-ENGLISH-Page-14.png" alt="pg-14"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Paper 8 -->
+                            <div id="p8" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f8" class="front-content">
+
+                                        <img src="https://i.ibb.co/N7w7yLJ/What-makes-Crops-Special-ENGLISH-Page-15.png" alt="pg-15"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b8" class="back-content">
+
+                                        <img src="https://i.ibb.co/rM30VVR/What-makes-Crops-Special-ENGLISH-Page-16.png" alt="pg-16"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Paper 9 -->
+                            <div id="p9" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f9" class="front-content">
+
+                                        <img src="https://i.ibb.co/9cPm60k/What-makes-Crops-Special-ENGLISH-Page-17.png" alt="pg-17"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b9" class="back-content">
+
+                                        <img src="https://i.ibb.co/3zCGrtz/What-makes-Crops-Special-ENGLISH-Page-18.png" alt="pg-18"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--page 10-->
+                            <div id="p10" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f10" class="front-content">
+
+                                        <img src="https://i.ibb.co/Jyr9Rq1/What-makes-Crops-Special-ENGLISH-Page-19.png" alt="pg-19"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b10" class="back-content">
+
+                                        <img src="https://i.ibb.co/mqjZL8L/What-makes-Crops-Special-ENGLISH-Page-20.png" alt="pg-20"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--page 11-->
+                            <div id="p11" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f11" class="front-content">
+
+                                        <img src="https://i.ibb.co/1vG5f2b/What-makes-Crops-Special-ENGLISH-Page-21.png" alt="pg-21"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b11" class="back-content">
+
+                                        <img src="https://i.ibb.co/ypPd2MN/What-makes-Crops-Special-ENGLISH-Page-22.png" alt="pg-22"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--page 12-->
+                            <div id="p12" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f12" class="front-content">
+
+                                        <img src="https://i.ibb.co/H4TccTP/What-makes-Crops-Special-ENGLISH-Page-23.png" alt="pg-23"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b12" class="back-content">
+
+                                        <img src="https://i.ibb.co/TwLFckX/What-makes-Crops-Special-ENGLISH-Page-24.png" alt="pg-24"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--page13-->
+                            <div id="p13" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f13" class="front-content">
+
+                                        <img src="https://i.ibb.co/6rDR9Cs/What-makes-Crops-Special-ENGLISH-Page-25.png" alt="pg-25"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b13" class="back-content">
+
+                                        <img src="https://i.ibb.co/6WfYPqx/What-makes-Crops-Special-ENGLISH-Page-26.png" alt="pg-26"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--page14-->
+                            <div id="p14" class="paper">
+
+                                <div class="front">
+
+                                    <div id="f14" class="front-content">
+
+                                        <img src="https://i.ibb.co/cXrJQSc/What-makes-Crops-Special-ENGLISH-Page-27.png" alt="pg-27"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="back">
+
+                                    <div id="b13" class="back-content">
+
+                                        <img src="https://i.ibb.co/jRcTVdr/What-makes-Crops-Special-ENGLISH-Page-28.png" alt="pg-28"
+                                            style="height:95%;width:100%;" loading="lazy" decoding="async">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            
+                        
+
+                         
+                            
+                            
+<!--page 12-->
+
+<!--page13-->
+
+<!--page14-->
+
+<!--page15-->
+<!--page15-->
+
+                            <!--page16-->
+                            <!--page17-->
+                            <!--page18-->
+                            <!--page19-->
+                            <!--page20-->
+
+
+
+
+
+
+
+
+                            <!--end-->
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    <!-- You can place any content here just like inside an actual iframe -->
+
+
+</body>
+
+</html>
+
+
+
+
+
+<script>
+    // References to DOM Elements 
+    const prevBtn = document.querySelector("#prev-btn");
+    const nextBtn = document.querySelector("#next-btn");
+    const book = document.querySelector("#book");
+    const papers = Array.from(document.querySelectorAll(".paper"));
+    const pannableContent = document.getElementById('pannable-content');
+    const zoomSlider = document.getElementById('zoom-slider');
+
+    // Variables for panning and zooming 
+    let zoomFactor = 1;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    // Variables for book navigation 
+    let currentLocation = 1;
+    const numOfPapers = papers.length;
+    const maxLocation = numOfPapers + 1;
+
+    // Event Listener for zoom control 
+    zoomSlider.addEventListener('input', () => {
+        zoomFactor = zoomSlider.value / 100;
+        updateZoomPan();
+    });
+
+    // Function to apply zoom and pan 
+    function updateZoomPan() {
+        pannableContent.style.transform = `scale(${zoomFactor}) translate(${panX}px, ${panY}px)`;
+        if (isDragging) {
+            requestAnimationFrame(updateZoomPan);
+        }
+    }
+
+    // Select all image elements
+    const images = document.querySelectorAll('img[data-src]'); // Ensure your images have "data-src" attribute instead of "src"
+
+    function preloadImage(img) {
+        const src = img.getAttribute("data-src");
+        if (!src) return;
+        img.src = src;
+    }
+
+    const imgObserver = new IntersectionObserver((entries, imgObserver) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            preloadImage(entry.target);
+            imgObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.5 });
+
+    images.forEach(img => {
+        imgObserver.observe(img);
+    });
+
+    // Initial update for zoom and pan 
+    updateZoomPan();
+
+    // Mouse and Touch events for dynamic panning
+    function startInteraction(startXCoord, startYCoord) {
+        isDragging = true;
+        startX = startXCoord - panX;
+        startY = startYCoord - panY;
+        updateZoomPan();
+    }
+
+    function moveInteraction(xCoord, yCoord) {
+        if (!isDragging) return;
+        panX = xCoord - startX;
+        panY = yCoord - startY;
+        updateZoomPan();
+    }
+
+    function endInteraction() {
+        isDragging = false;
+    }
+
+    pannableContent.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // Prevent default action
+        startInteraction(e.clientX, e.clientY);
+        pannableContent.style.cursor = 'grabbing';
+    });
+
+    pannableContent.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) return; // Prevent touchstart for panning if zooming
+        e.preventDefault();
+        const touch = e.touches[0];
+        startInteraction(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('mousemove', (e) => moveInteraction(e.clientX, e.clientY));
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) return; // Prevent touchmove for panning if zooming
+        const touch = e.touches[0];
+        moveInteraction(touch.clientX, touch.clientY);
+        e.preventDefault();
+    });
+
+    document.addEventListener('mouseup', endInteraction);
+    document.addEventListener('touchend', endInteraction);
+
+    // Event Listeners for navigation buttons 
+    prevBtn.addEventListener("click", goPrevPage);
+    nextBtn.addEventListener("click", goNextPage);
+
+    // Functions for page flipping 
+    function openBook() {
+        book.style.transform = "translateX(50%)";
+        prevBtn.style.transform = "translateX(0px)";
+        nextBtn.style.transform = "translateX(0px)";
+    }
+
+    function closeBook(isAtBeginning) {
+        book.style.transform = isAtBeginning ? "translateX(0%)" : "translateX(0%)";
+        prevBtn.style.transform = "translateX(0px)";
+        nextBtn.style.transform = "translateX(0px)";
+    }
+
+    function goNextPage() {
+        if (currentLocation < maxLocation) {
+            // Open book for first page
+            if (currentLocation === 1) {
+                openBook();
+            }
+
+            // Turn page
+            papers[currentLocation - 1].classList.add("flipped");
+            papers[currentLocation - 1].style.zIndex = currentLocation;
+
+            // Close book for last page
+            if (currentLocation === numOfPapers) {
+                closeBook(false);
+            }
+
+            currentLocation++;
+        }
+    }
+
+    function goPrevPage() {
+        if (currentLocation > 1) {
+            currentLocation--;
+
+            // If moving back from the last page
+            if (currentLocation === numOfPapers) {
+                openBook();
+            }
+
+            // If moving back to the first page
+            if (currentLocation === 1) {
+                closeBook(true);
+            }
+
+            // Turn page back
+            papers[currentLocation - 1].classList.remove("flipped");
+            papers[currentLocation - 1].style.zIndex = numOfPapers - currentLocation + 1;
+        }
+    }
+
+    // Zoom functionality for touch devices
+    document.addEventListener('DOMContentLoaded', function () {
+        const zoomableContent = document.getElementById('pannable-content'); // Make sure you refer to the correct element
+        let initialDistance = null;
+        let scale = 1;
+
+        function getDistance(touches) {
+            const [touch1, touch2] = touches;
+            const dx = touch1.pageX - touch2.pageX;
+            const dy = touch1.pageY - touch2.pageY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function scaleContent(newScale) {
+            zoomFactor = newScale; // Update zoomFactor to maintain consistency
+            updateZoomPan();
+        }
+
+        zoomableContent.addEventListener('touchstart', function (e) {
+            if (e.touches.length === 2) { // Check for two fingers
+                e.preventDefault();
+                initialDistance = getDistance(e.touches);
+            }
+        });
+
+        zoomableContent.addEventListener('touchmove', function (e) {
+            if (e.touches.length === 2 && initialDistance) {
+                e.preventDefault();
+                const currentDistance = getDistance(e.touches);
+                const ratio = currentDistance / initialDistance;
+                const newScale = scale * ratio;
+                scaleContent(newScale);
+            }
+        });
+
+        zoomableContent.addEventListener('touchend', function (e) {
+            if (e.touches.length < 2) {
+                scale = zoomFactor; // Save the current scale
+                initialDistance = null; // Reset initial distance
+            }
+        });
+    });
+</script>
